@@ -1,45 +1,84 @@
 <!doctype html>
 <html>
-  <head>
-    <title>MovieBD</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
-  <body>
-    <div class="container">
-      <header class="blog-header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-          <div class="col-3 pt-1">
-            <a href="/profile" class="btn btn-secondary btn-sm">Profile</a>
-          </div>
-          <div class="col-3 pt-1">
-            <a href="/movieBoard" class="btn btn-secondary btn-sm">MovieBD</a>
-          </div>
-          <div class="col-3 text-center">
-            <h1 class="blog-header-logo text-dark">Post</h1>
-          </div>
-          <div class="col-3 d-flex justify-content-end align-items-center">
-            <a href="/logout" class="btn btn-secondary btn-sm">Log Out</a>
-          </div>
-        </div>
-      </header>
+
+<head>
+  <title>MovieBD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">MoviesBD</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/movieBoard">MovieBD</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout" aria-disabled="true">Log Out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <header class="blog-header py-3">
+      <div class="col-3 text-center">
+        <h1 class="blog-header-logo text-dark">Post</h1>
+      </div>
+    </header>
     <div class="row">
       <!-- LOCAL INFORMATION -->
       <% if (user.local.email) { %>
-        <div class="col-sm-6">
-          <h2>Add a message</h2>
+      <div class="container">
+        <div class="input-group mb-3">
           <form action="/messages" method="POST">
-            <input class="hide" type="text" value="<%= user.local.email %>" name="name">
-            <input type="text"  placeholder="title" name="title">
-            <input type="date" name="date">
-            <textarea rows="5" cols="25" placeholder="How's it going?" name="msg"></textarea>
-            <input type="text" placeholder="photo url" name="src">
-            <button class="msgSubmit" type="submit">Submit</button>
+            <div class="row mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Username</span>
+              </div>
+              <input type="text" name="name" class="form-control" placeholder="Username" value="<%= user.local.email %>" aria-label="Username" aria-describedby="basic-addon1" readonly>
+            </div>
+            <div class="row mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Post Title</span>
+              </div>
+              <input type="text" name="title" class="form-control" placeholder="Post Title" aria-describedby="basic-addon1">
+            </div>
+            <div class="row mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Date</span>
+              </div>
+              <input type="date" name="date" class="form-control" aria-describedby="basic-addon1">
+            </div>
+            <div class="row mb-3">
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Comments</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="msg" placeholder="Comments..." rows="5"></textarea>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" name="src">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <button class="msgSubmit btn btn-secondary" type="submit">Submit</button>
+            </div>
           </form>
         </div>
+      </div>
       <% } %>
     </div>
-  <script src="main.js"></script>
-  </body>
+    <script src="main.js"></script>
+</body>
+
 </html>

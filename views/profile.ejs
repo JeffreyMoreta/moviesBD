@@ -1,58 +1,69 @@
 <!doctype html>
 <html>
-  <head>
-    <title>MovieBD</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
-  <body>
-    <div class="container">
-      <header class="blog-header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-          <div class="col-3 pt-1">
-            <a href="/post" class="btn btn-secondary btn-sm">Post</a>
-          </div>
-          <div class="col-3 pt-1">
-            <a href="/movieBoard" class="btn btn-secondary btn-sm">MovieBD</a>
-          </div>
-          <div class="col-3 text-center">
-            <h1 class="blog-header-logo text-dark">Posts</h1>
-          </div>
-          <div class="col-3 d-flex justify-content-end align-items-center">
-            <a href="/logout" class="btn btn-secondary btn-sm">Log Out</a>
-          </div>
-        </div>
-      </header>
-      <div class="row">
+
+<head>
+  <title>MovieBD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">MoviesBD</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/post">Post</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/movieBoard">MovieBD</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout" aria-disabled="true">Log Out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <header class="blog-header py-3">
+      <div class="col-3 text-center">
+        <h1 class="blog-header-logo text-dark">Profile</h1>
+      </div>
+    </header>
+    <div class="row">
       <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-          <div class="well">
+      <div class="col-sm-6">
+        <div class="well p-3 rounded shadow">
           <h3>Your Profile</h3>
           <p>
             <strong>id</strong>: <%= user._id %><br>
             <strong>email</strong>: <%= user.local.email %><br>
           </p>
-          </div>
-        </div>
-        <div class="col-sm-6">
-        <h3 class="entryTitle">Your Entries</h3>
-        <% for(var i=0; i<messages.length; i++) { %>
-          <% if (user.local.email == messages[i].name) { %>
-            <div class="messages">
-              <p><%= messages[i].name %></p>
-              <p><%= messages[i].title %></p>
-              <p><%= messages[i].date %></p>
-              <p><%= messages[i].msg %></p>
-              <img class="imgPost" src=<%= String(messages[i].src) %> >
-              <p><%= messages[i].trash %></p>
-              <span data-id="<%= messages[i]._id %>"><i class="fa fa-trash trash" aria-hidden="true"></i></span>
-            </div>
-          <% } %>
-        <% } %>
         </div>
       </div>
+      <div class="col-sm-6">
+        <h3 class="entryTitle">Your Entries</h3>
+        <% for(var i=0; i<messages.length; i++) { %>
+        <% if (user.local.email == messages[i].name) { %>
+        <div class="messages rounded shadow p-3">
+          <p><%= messages[i].name %></p>
+          <p><%= messages[i].title %></p>
+          <p><%= messages[i].date %></p>
+          <p><%= messages[i].msg %></p>
+          <img class="imgPost" src=<%= String(messages[i].src) %>>
+          <p><%= messages[i].trash %></p>
+          <span data-id="<%= messages[i]._id %>"><i class="fa fa-trash trash" aria-hidden="true"></i></span>
+        </div>
+        <% } %>
+        <% } %>
+      </div>
     </div>
+  </div>
   <script src="main.js"></script>
-  </body>
+</body>
+
 </html>
