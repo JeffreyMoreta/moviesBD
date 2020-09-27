@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <title>MovieBD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="col-3 pt-1">
+            <a href="/profile" class="btn btn-secondary btn-sm">Profile</a>
+          </div>
+          <div class="col-3 pt-1">
+            <a href="/movieBoard" class="btn btn-secondary btn-sm">MovieBD</a>
+          </div>
+          <div class="col-3 text-center">
+            <h1 class="blog-header-logo text-dark">Post</h1>
+          </div>
+          <div class="col-3 d-flex justify-content-end align-items-center">
+            <a href="/logout" class="btn btn-secondary btn-sm">Log Out</a>
+          </div>
+        </div>
+      </header>
+    <div class="row">
+      <!-- LOCAL INFORMATION -->
+      <% if (user.local.email) { %>
+        <div class="col-sm-6">
+          <h2>Add a message</h2>
+          <form action="/messages" method="POST">
+            <input class="hide" type="text" value="<%= user.local.email %>" name="name">
+            <input type="text"  placeholder="title" name="title">
+            <input type="date" name="date">
+            <textarea rows="5" cols="25" placeholder="How's it going?" name="msg"></textarea>
+            <input type="text" placeholder="photo url" name="src">
+            <button class="msgSubmit" type="submit">Submit</button>
+          </form>
+        </div>
+      <% } %>
+    </div>
+  <script src="main.js"></script>
+  </body>
+</html>
